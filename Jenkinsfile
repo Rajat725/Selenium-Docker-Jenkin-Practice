@@ -22,8 +22,8 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    // There might be a warning.
-                    bat "docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}"
+                    // Securely pass the Docker Hub password
+                    bat "docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%"
                     bat 'docker push rajat725/sel'
                 }
             }
