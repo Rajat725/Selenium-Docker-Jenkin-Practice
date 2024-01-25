@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                bat 'docker build -t rajat725/sel .'
+                bat 'docker build -t rajat725/sel:latest .'
             }
         }
 
@@ -23,8 +23,10 @@ pipeline {
             steps {
                 script {
                     // Securely pass the Docker Hub password
-                    bat "docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%"
-                    bat 'docker push rajat725/sel'
+                    bat "docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW% --password-stdin"
+                    bat 'docker push rajat725/sel:latest'
+                    bat "docker tag rajat725/sel:latest rajat725/sel:{env.BUILD_NUMBER}"
+                    bat 'docker push rajat725/sel:{env.BUILD_NUMBER}'
                 }
             }
         }
