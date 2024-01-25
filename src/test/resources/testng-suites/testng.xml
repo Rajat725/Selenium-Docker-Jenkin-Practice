@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Skalex">
+<listeners>
+    <listener class-name="com.jaz.listener.TestListener"></listener>
+</listeners>
+    <test name="Landing Page Test Folder" parallel="methods">
+        <classes>
+            <class name="com.jaz.tests.LandingPageTests">
+            </class>
+        </classes>
+    </test>
+</suite>
